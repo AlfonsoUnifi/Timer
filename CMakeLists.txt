@@ -3,4 +3,8 @@ project(Timer)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Timer main.cpp)
+add_executable(Timer main.cpp
+        Timer.cpp
+        Timer.h
+        Box.cpp
+        Box.h)
