@@ -8,3 +8,5 @@ add_executable(Timer main.cpp
         Timer.h
         Box.cpp
         Box.h)
+
+target_link_libraries(Timer ncurses)

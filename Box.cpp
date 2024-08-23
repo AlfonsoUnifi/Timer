@@ -2,25 +2,32 @@
 // Created by alfoc on 21/08/24.
 //
 
+#include <unistd.h>
 #include "Box.h"
 
 void Box::show() {
-    initscr();
-    noecho();
     WINDOW * win= newwin(height,width,start_y,start_x);
     refresh();
-    box(win,103,103);
+    box(win, 0, 0);
+    wrefresh(win);
+    keypad(win, TRUE);
     int tasto;
-    do{
-        mvwprintw(win,1,1, "%s", timer->getDatetime().c_str());
-        tasto=getch();
-        if(tasto==KEY_RIGHT&&timer->getFormat()<=1){
-            timer->setFormat(timer->getFormat()+1);
-            timer->changeFormat();
-        }else if(tasto==KEY_LEFT&&timer->getFormat()>=0){
-            timer->setFormat(timer->getFormat()-1);
+    while (true) {
+        timer->updateTime();
+        werase(win);
+        box(win, 0, 0);
+        mvwprintw(win, 1, 1, "%s", timer->getDatetime().c_str());
+        wrefresh(win);
+
+        usleep(1000000);
+        tasto = getch();
+
+        if (tasto == 27) {
+            break;
+        } else if (tasto == KEY_RIGHT || tasto == KEY_LEFT) {
             timer->changeFormat();
         }
-    }while (tasto!=KEY_END);
+    }
+    delwin(win);
     endwin();
 }
