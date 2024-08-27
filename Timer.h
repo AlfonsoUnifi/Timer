@@ -8,10 +8,11 @@
 #include <string>
 const std::time_t t = std::time(nullptr);
 const static std::tm* now = std::localtime(&t);
-const static int dimensionbuffer=80;
+const static int dimensionBuffer=80;
+static char buffer[dimensionBuffer];
 class Timer {
 public:
-    Timer():format(0),buffer(){}
+    Timer():format(0){}
 
     void changeFormat();
 
@@ -36,7 +37,6 @@ public:
 
 private:
     int format;
-    char buffer[dimensionbuffer];
     std::string datetime;
 };
 
