@@ -6,13 +6,12 @@
 #define TIMER_TIMER_H
 #include <ctime>
 #include <string>
-const std::time_t t = std::time(nullptr);
-const static std::tm* now = std::localtime(&t);
+#include "Clock.h"
 const static int dimensionBuffer=80;
 static char buffer[dimensionBuffer];
 class Timer {
 public:
-    Timer():format(0){}
+    explicit Timer(const Clock & clock1):format(0),clock(clock1){}
 
     void changeFormat();
 
@@ -38,6 +37,7 @@ public:
 private:
     int format;
     std::string datetime;
+    const Clock &clock;
 };
 
 

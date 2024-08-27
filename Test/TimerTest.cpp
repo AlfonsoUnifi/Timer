@@ -4,16 +4,16 @@
 
 #include "gtest/gtest.h"
 #include "../Timer.h"
-
+#include "../SystemClock.h"
+SystemClock clock1;
+Timer timer(clock1);
 // Test per verificare il formato iniziale
 TEST(TimerTest, InitialFormat) {
-    Timer timer;
     EXPECT_EQ(timer.getFormat(), 0);
 }
 
 // Test per verificare il cambio di formato
 TEST(TimerTest, ChangeFormat) {
-    Timer timer;
     timer.changeFormat();
     EXPECT_EQ(timer.getFormat(), 1);
     timer.changeFormat();
@@ -22,7 +22,6 @@ TEST(TimerTest, ChangeFormat) {
 
 // Test per verificare l'aggiornamento del tempo
 TEST(TimerTest, UpdateTime) {
-    Timer timer;
     timer.updateTime();
     std::string datetime1 = timer.getDatetime();
     sleep(1);

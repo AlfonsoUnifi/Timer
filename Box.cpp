@@ -11,17 +11,14 @@ void Box::show() {
     box(win, 0, 0);
     wrefresh(win);
     keypad(win, TRUE);
-    int tasto;
     while (true) {
         timer->updateTime();
         werase(win);
         box(win, 0, 0);
         mvwprintw(win, 1, 1, "%s", timer->getDatetime().c_str());
         wrefresh(win);
-
-        usleep(1000000);
-        tasto = getch();
-
+        sleep(1);
+        int tasto = getch();
         if (tasto == 27) {
             break;
         } else if (tasto == KEY_RIGHT || tasto == KEY_LEFT) {

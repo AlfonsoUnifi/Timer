@@ -5,8 +5,7 @@
 #include "Timer.h"
 
 void Timer::updateTime() {
-    time_t t = std::time(nullptr);
-    now = std::localtime(&t);
+    const std::tm * now = clock.now();
     switch (format) {
         case 0:
             std::strftime(buffer, sizeof(buffer), "%d/%m/%Y %H:%M:%S", now);

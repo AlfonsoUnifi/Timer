@@ -9,7 +9,9 @@ add_subdirectory(googletest)
 # Aggiungi la directory dei test
 add_subdirectory(Test)
 
-set(SOURCE_FILES main.cpp Timer.cpp Timer.h Box.cpp Box.h)
+set(SOURCE_FILES main.cpp Timer.cpp Timer.h Box.cpp Box.h
+        Clock.h
+        SystemClock.h)
 
 add_executable(Timer main.cpp)
 add_library(core ${SOURCE_FILES})

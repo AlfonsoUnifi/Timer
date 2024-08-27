@@ -2,13 +2,15 @@
 #include <ncurses.h>
 #include "Timer.h"
 #include "Box.h"
+#include "SystemClock.h"
 int main() {
     initscr();
     noecho();
     cbreak();
     keypad(stdscr, TRUE);
     nodelay(stdscr, TRUE);
-    Timer timer1;
+    SystemClock clock1;
+    Timer timer1(clock1);
     int height, width;
     getmaxyx(stdscr, height, width);
     int win_height = 5;
