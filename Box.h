@@ -12,38 +12,6 @@ class Box {
 public:
     Box(int wid,int heig,int x,int y,Timer * timer):width(wid),height(heig),start_x(x),start_y(y),timer(timer){}
 
-    int getWidth() const {
-        return width;
-    }
-
-    void setWidth(int width) {
-        Box::width = width;
-    }
-
-    int getHeight() const {
-        return height;
-    }
-
-    void setHeight(int height) {
-        Box::height = height;
-    }
-
-    int getStartX() const {
-        return start_x;
-    }
-
-    void setStartX(int startX) {
-        start_x = startX;
-    }
-
-    int getStartY() const {
-        return start_y;
-    }
-
-    void setStartY(int startY) {
-        start_y = startY;
-    }
-
     void show();
 
 private:
@@ -52,6 +20,8 @@ private:
     int start_x;
     int start_y;
     Timer * timer;
+
+    void moveButton(int temp_y_r, int temp_x_r, WINDOW *win3) const;
 };
 
 

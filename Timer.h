@@ -19,16 +19,8 @@ public:
         return format;
     }
 
-    void setFormat(int format) {
-        Timer::format = format;
-    }
-
     const std::string &getDatetime() const {
         return datetime;
-    }
-
-    void setDatetime(const std::string &datetime) {
-        Timer::datetime = datetime;
     }
 
     void updateTime();

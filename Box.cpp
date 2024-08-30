@@ -37,23 +37,22 @@ void Box::show() {
         if (tasto == 27) {
             break;
         } else if (tasto == KEY_RIGHT) {
-            werase(win3);
-            wrefresh(win3);
-            WINDOW * win4= newwin(height/2,width/4,temp_y_r,temp_x_r);
-            box(win4,0,0);
-            wrefresh(win4);
-            usleep(100000);
+            moveButton(temp_y_r, temp_x_r, win3);
             timer->changeFormat();
         } else if( tasto == KEY_LEFT){
-            werase(win2);
-            wrefresh(win2);
-            WINDOW * win5= newwin(height/2,width/4,temp_y_l,temp_x_l);
-            box(win5,0,0);
-            wrefresh(win5);
-            usleep(100000);
+            moveButton(temp_y_l,temp_x_l,win2);
             timer->changeFormat();
         }
     }
     delwin(win);
     endwin();
+}
+
+void Box::moveButton(int temp_y_r, int temp_x_r, WINDOW *win3) const {
+    werase(win3);
+    wrefresh(win3);
+    WINDOW * win4= newwin(height / 2, width / 4, temp_y_r, temp_x_r);
+    box(win4,0,0);
+    wrefresh(win4);
+    usleep(100000);
 }
