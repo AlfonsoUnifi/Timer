@@ -7,13 +7,11 @@
 #include <ctime>
 #include <string>
 #include "Clock.h"
-const static int dimensionBuffer=80;
-static char buffer[dimensionBuffer];
+//const static int dimensionBuffer=80;
+//static char buffer[dimensionBuffer];
 class Timer {
 public:
     explicit Timer(const Clock & clock1):format(0),clock(clock1){}
-
-    void changeFormat();
 
     int getFormat() const {
         return format;
@@ -21,6 +19,10 @@ public:
 
     const std::string &getDatetime() const {
         return datetime;
+    }
+
+    void setFormat(int format) {
+        Timer::format = format;
     }
 
     void updateTime();

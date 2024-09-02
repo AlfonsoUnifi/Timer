@@ -6,11 +6,10 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 find_package(GTest REQUIRED)
 
 set(SOURCE_FILES runAllTests.cpp
-        TimerTest.cpp
-        TimerFixture.cpp
-        MockClock.h
-        ../Timer.h
-        ../Timer.cpp
+        ClockTest.cpp
+        ClockFixture.cpp
+        ../SystemClock.h
+        ../SystemClock.cpp
 )
 add_executable(runTimerTests ${SOURCE_FILES}
 )
