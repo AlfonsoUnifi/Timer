@@ -6,32 +6,62 @@
 #define TIMER_TIMER_H
 #include <ctime>
 #include <string>
-#include "Clock.h"
-//const static int dimensionBuffer=80;
-//static char buffer[dimensionBuffer];
+#include <ncurses.h>
 class Timer {
 public:
-    explicit Timer(const Clock & clock1):format(0),clock(clock1){}
+    Timer(int h,int m,int s): hours(h),minutes(m),seconds(s),pause(true),play(false){}
 
-    int getFormat() const {
-        return format;
+    int getHours() const {
+        return hours;
     }
 
-    const std::string &getDatetime() const {
-        return datetime;
+    void setHours(int h) {
+        Timer::hours = h;
     }
 
-    void setFormat(int format) {
-        Timer::format = format;
+    int getMinutes() const {
+        return minutes;
     }
 
-    void updateTime();
+    void setMinutes(int min) {
+        Timer::minutes = min;
+    }
+
+    int getSeconds() const {
+        return seconds;
+    }
+
+    void setSeconds(int sec) {
+        Timer::seconds = sec;
+    }
+
+    bool isPlay() const {
+        return play;
+    }
+
+    void setPlay(bool pl) {
+        Timer::play = pl;
+    }
+
+    bool isPause() const {
+        return pause;
+    }
+
+    void setPause(bool pa) {
+        Timer::pause = pa;
+    }
+
+    void updateTimer();
+
+    void setTimer();
 
 
 private:
-    int format;
-    std::string datetime;
-    const Clock &clock;
+    int hours;
+    int minutes;
+    int seconds;
+    bool play;
+    bool pause;
 };
 
 

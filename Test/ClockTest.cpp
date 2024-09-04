@@ -12,10 +12,10 @@ TEST(TimerTest, InitialFormat) {
 
 // Test per verificare l'aggiornamento del tempo
 TEST(TimerTest, UpdateTime) {
-    clock1.updateTime();
+    clock1.updateTime(SystemClock::now());
     std::string datetime1 = clock1.getDatetime();
     sleep(1);
-    clock1.updateTime();
+    clock1.updateTime(SystemClock::now());
     std::string datetime2 = clock1.getDatetime();
     EXPECT_NE(datetime1, datetime2);
 }

@@ -10,7 +10,6 @@ add_subdirectory(googletest)
 add_subdirectory(Test)
 
 set(SOURCE_FILES main.cpp Timer.cpp Timer.h Box.cpp Box.h
-        Clock.h
         SystemClock.h
         SystemClock.cpp)
 

@@ -11,9 +11,9 @@
 
 class Box {
 public:
-    Box(int wid,int heig,int x,int y,SystemClock * clock1):width(wid),height(heig),start_x(x),start_y(y),clock(clock1){}
+    Box(int wid,int heig,int x,int y,SystemClock * clock1,Timer * timer1):width(wid),height(heig),start_x(x),start_y(y),clock(clock1),timer(timer1){}
 
-    void show();
+    const void show();
 
 private:
     int width;
@@ -21,7 +21,7 @@ private:
     int start_x;
     int start_y;
     SystemClock * clock;
-
+    Timer * timer;
     void moveButton(int temp_y_r, int temp_x_r, WINDOW *win3) const;
 };
 

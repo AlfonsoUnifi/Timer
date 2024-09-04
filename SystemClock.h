@@ -4,20 +4,21 @@
 
 #ifndef TIMER_SYSTEMCLOCK_H
 #define TIMER_SYSTEMCLOCK_H
-
-#include "Clock.h"
+#include <ctime>
 #include <string>
-
-class SystemClock: public Clock{
+const static int dimensionBuffer=80;
+static char buffer[dimensionBuffer];
+class SystemClock{
 public:
-    explicit SystemClock():format(0){}
 
-    std::tm * now() const override{
+    explicit SystemClock() : format(0) {}
+
+    static std::tm * now(){
         std::time_t t = std::time(nullptr);
         return std::localtime(&t);
     }
 
-    void updateTime() override;
+    void updateTime(std::tm * customTime);
 
     int getFormat() const {
         return format;
@@ -27,8 +28,8 @@ public:
         return datetime;
     }
 
-    void setFormat(int format) {
-        SystemClock::format = format;
+    void setFormat(int form) {
+        SystemClock::format = form;
     }
 
     virtual ~SystemClock();
