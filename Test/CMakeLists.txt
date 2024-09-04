@@ -10,6 +10,9 @@ set(SOURCE_FILES runAllTests.cpp
         ClockFixture.cpp
         ../SystemClock.h
         ../SystemClock.cpp
+        ../Timer.h
+        ../Timer.cpp
+        TimerFixture.cpp
 )
 add_executable(runTimerTests ${SOURCE_FILES}
 )
@@ -22,3 +25,5 @@ target_link_libraries(runTimerTests
         gmock
         gmock_main
 )
+
+target_link_libraries(runTimerTests ncurses)

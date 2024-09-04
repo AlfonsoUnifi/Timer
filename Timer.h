@@ -11,6 +11,10 @@ class Timer {
 public:
     Timer(int h,int m,int s): hours(h),minutes(m),seconds(s),pause(true),play(false){}
 
+    void setSeconds(int seconds) {
+        Timer::seconds = seconds;
+    }
+
     int getHours() const {
         return hours;
     }
