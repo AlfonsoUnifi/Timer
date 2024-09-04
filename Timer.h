@@ -15,24 +15,12 @@ public:
         return hours;
     }
 
-    void setHours(int h) {
-        Timer::hours = h;
-    }
-
     int getMinutes() const {
         return minutes;
     }
 
-    void setMinutes(int min) {
-        Timer::minutes = min;
-    }
-
     int getSeconds() const {
         return seconds;
-    }
-
-    void setSeconds(int sec) {
-        Timer::seconds = sec;
     }
 
     bool isPlay() const {
@@ -62,6 +50,8 @@ private:
     int seconds;
     bool play;
     bool pause;
+
+    int changeTime(int change,int part);
 };
 
 

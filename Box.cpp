@@ -8,8 +8,7 @@
 const void Box::show() {
     start_color();
     mousemask(ALL_MOUSE_EVENTS, nullptr);
-    MEVENT eventPlay;
-    int original_y_r = start_y - 3;
+    int original_y_r = start_y - 2;
     int original_x_r = start_x + width - 7;
     int temp_y= start_y - 1;
     WINDOW * win= newwin(height,width,start_y,start_x);
@@ -19,29 +18,20 @@ const void Box::show() {
     WINDOW * playButton= newwin(height/2+1,width/4+2,start_y+15,start_x);
     WINDOW * pauseButton = newwin(height/2+1,width/4+2,start_y+15,original_x_r-2);
     WINDOW * setTimer = newwin(height/2+1,width/4+4,start_y+15,original_x_r-14);
-
     init_pair(1, COLOR_RED, COLOR_BLACK);
     keypad(win, TRUE);
     while (true) {
         clock->updateTime(SystemClock::now());
         if(timer->isPlay()&&!timer->isPause())
             timer->updateTimer();
-        werase(win);
-        werase(win2);
-        werase(win3);
-        werase(winTimer);
-        werase(playButton);
-        werase(pauseButton);
-        werase(setTimer);
-        box(win, 0, 0);
-        box(win2, 0, 0);
-        box(win3, 0, 0);
-        box(winTimer,0,0);
-        box(playButton,0,0);
-        box(pauseButton,0,0);
-        box(setTimer,0,0);
+        drawBox(win);
+        drawBox(win2);
+        drawBox(win3);
+        drawBox(winTimer);
+        drawBox(playButton);
+        drawBox(pauseButton);
+        drawBox(setTimer);
         wattron(win, COLOR_PAIR(1));
-        mvwprintw(win2,0,1,"<-");
         mvwprintw(setTimer,1,2,"%s","newTimer");
         mvwprintw(playButton,1,2,"%s","play");
         mvwprintw(pauseButton,1,2,"%s","pause");
@@ -59,7 +49,8 @@ const void Box::show() {
         int tasto = getch();
         if (tasto == 27) {
             break;
-        } else if (tasto == KEY_RIGHT) {
+        }
+        if (tasto == KEY_RIGHT) {
             moveButton(temp_y, original_x_r, win3);
             if(clock->getFormat()<2)
                 clock->setFormat(clock->getFormat()+1);
@@ -68,6 +59,7 @@ const void Box::show() {
             if(clock->getFormat()>0)
                 clock->setFormat(clock->getFormat()-1);
         }
+        MEVENT eventPlay;
         if (tasto == KEY_MOUSE) {
             if (getmouse(&eventPlay) == OK) {
                 if (eventPlay.x >= start_x && eventPlay.x < start_x + width/4+2 &&
@@ -89,6 +81,11 @@ const void Box::show() {
     }
     delwin(win);
     endwin();
+}
+
+void Box::drawBox(WINDOW *win) const {
+    werase(win);
+    box(win, 0, 0);
 }
 
 void Box::moveButton(int temp_y_r, int temp_x_r, WINDOW *win3) const {

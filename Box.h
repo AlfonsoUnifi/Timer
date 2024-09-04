@@ -23,6 +23,8 @@ private:
     SystemClock * clock;
     Timer * timer;
     void moveButton(int temp_y_r, int temp_x_r, WINDOW *win3) const;
+
+    void drawBox(WINDOW *win) const;
 };
 
 

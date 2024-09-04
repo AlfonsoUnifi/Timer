@@ -30,63 +30,34 @@ void Timer::setTimer() {
     pause = true;
     play = false;
     int change = getch();
-    printw("Modifica ora...: %d",hours);
+    printw("Modifica ora...: ");
+    hours=changeTime(change, hours);
+    change = getch();
+    printw("Modifica minuto...: ");
+    minutes=changeTime(change, minutes);
+    change = getch();
+    printw("Modifica secondo...: ");
+    seconds=changeTime(change, seconds);
+}
+
+int Timer::changeTime(int change, int part) {
     while (change != 10) {
         change = getch();
         if (change == KEY_UP) {
-            hours++;
+            part++;
             clear();
             refresh();
-            printw("Modifica ora...: %d",hours);
+            printw("%d", part);
         } else if (change == KEY_DOWN && hours > 0) {
-            hours--;
+            part--;
             clear();
             refresh();
-            printw("Modifica ora...: %d",hours);
+            printw("%d", part);
         }
         if (change == KEY_ENTER)
             break;
     }
     clear();
     refresh();
-    change = getch();
-    printw("Modifica minuto...: %d",minutes);
-    while (change != 10) {
-        change = getch();
-        if (change == KEY_UP && minutes < 60) {
-            minutes++;
-            clear();
-            refresh();
-            printw("Modifica minuto...: %d",minutes);
-        } else if (change == KEY_DOWN && minutes > 0) {
-            minutes--;
-            clear();
-            refresh();
-            printw("Modifica minuto...: %d",minutes);
-        }
-        if (change == KEY_ENTER)
-            break;
-    }
-    clear();
-    refresh();
-    change = getch();
-    printw("Modifica secondo...: %d",seconds);
-    while (change != 10) {
-        change = getch();
-        if (change == KEY_UP && seconds < 60) {
-            seconds++;
-            clear();
-            refresh();
-            printw("Modifica secondo...: %d",seconds);
-        } else if (change == KEY_DOWN && seconds > 0) {
-            seconds--;
-            clear();
-            refresh();
-            printw("Modifica secondo...: %d",seconds);
-        }
-        if (change == KEY_ENTER)
-            break;
-    }
-    clear();
-    refresh();
+    return part;
 }
