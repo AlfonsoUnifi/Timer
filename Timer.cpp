@@ -48,7 +48,7 @@ int Timer::changeTime(int change, int part) {
             clear();
             refresh();
             printw("%d", part);
-        } else if (change == KEY_DOWN && hours > 0) {
+        } else if (change == KEY_DOWN && part > 0) {
             part--;
             clear();
             refresh();
